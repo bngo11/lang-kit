@@ -9,4 +9,5 @@ RDEPEND=dev-lang/mono
 RESTRICT=test
 SLOT=0
 SRC_URI=http://download.mono-project.com/sources/mono-basic/mono-basic-4.7.tar.bz2
+_eclasses_=mono-env	1f24c032c78290b0d9a07d5b343051a7
 _md5_=b3de467d10518688e18a5ebc3a0d628c
