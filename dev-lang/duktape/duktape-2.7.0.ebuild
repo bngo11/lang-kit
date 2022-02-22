@@ -6,7 +6,7 @@ inherit toolchain-funcs
 
 DESCRIPTION="Embeddable Javascript engine"
 HOMEPAGE="https://duktape.org"
-SRC_URI="https://github.com/svaarala/duktape/releases/download/v2.6.0/duktape-2.6.0.tar.xz"
+SRC_URI="https://github.com/svaarala/duktape/releases/download/v2.7.0/duktape-2.7.0.tar.xz"
 
 LICENSE="MIT"
 # Upstream don't maintain binary compatibility
@@ -14,15 +14,11 @@ LICENSE="MIT"
 SLOT="0/${PV}"
 KEYWORDS="*"
 
-PATCHES=(
-	"${FILESDIR}/${PN}-2.6.0-respect-tc-env.patch"
-)
-
 src_prepare() {
 	default
 
 	# Set install path
-	sed -i "s#INSTALL_PREFIX = /usr/local#INSTALL_PREFIX = ${ED}/usr#" \
+	sed -i "s#INSTALL_PREFIX ?= /usr/local#INSTALL_PREFIX ?= ${ED}/usr#" \
 			Makefile.sharedlibrary || die "failed to set install path"
 
 	# Edit pkgconfig
@@ -30,8 +26,8 @@ src_prepare() {
 	sed -i "s#LIBDIR#$(get_libdir)#" "${S}/${PN}.pc" || die
 
 	# Set lib folder
-	sed -i "s#(INSTALL_PREFIX)/lib#(INSTALL_PREFIX)/$(get_libdir)#" \
-		Makefile.sharedlibrary || die
+	sed -i "s#LIBDIR ?= /lib#LIBDIR ?= /$(get_libdir)#" \
+		Makefile.sharedlibrary || die "failed to set lib path"
 
 	mv Makefile.sharedlibrary Makefile || die "failed to rename makefile"
 }
