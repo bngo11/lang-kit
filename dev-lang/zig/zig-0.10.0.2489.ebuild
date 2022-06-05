@@ -40,7 +40,7 @@ llvm_check_deps() {
 
 post_src_unpack() {
 	if [ ! -d "${S}" ]; then
-		mv -* "${S}" || die
+		mv "${WORKDIR}"/* "${S}" || die
 	fi
 }
 
