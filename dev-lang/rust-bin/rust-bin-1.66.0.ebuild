@@ -10,49 +10,49 @@ DESCRIPTION="Systems programming language from Mozilla"
 HOMEPAGE="https://www.rust-lang.org/"
 SRC_URI="
 		abi_x86_64? ( 
-		https://static.rust-lang.org/dist/rust-1.65.0-x86_64-unknown-linux-gnu.tar.xz -> rust-1.65.0-x86_64-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-x86_64-unknown-linux-gnu.tar.xz -> rust-1.66.0-x86_64-unknown-linux-gnu.tar.xz
 	)
 	arm? ( 
-		https://static.rust-lang.org/dist/rust-1.65.0-arm-unknown-linux-gnueabi.tar.xz -> rust-1.65.0-arm-unknown-linux-gnueabi.tar.xz
-		https://static.rust-lang.org/dist/rust-1.65.0-arm-unknown-linux-gnueabihf.tar.xz -> rust-1.65.0-arm-unknown-linux-gnueabihf.tar.xz
-		https://static.rust-lang.org/dist/rust-1.65.0-armv7-unknown-linux-gnueabihf.tar.xz -> rust-1.65.0-armv7-unknown-linux-gnueabihf.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-arm-unknown-linux-gnueabi.tar.xz -> rust-1.66.0-arm-unknown-linux-gnueabi.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-arm-unknown-linux-gnueabihf.tar.xz -> rust-1.66.0-arm-unknown-linux-gnueabihf.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-armv7-unknown-linux-gnueabihf.tar.xz -> rust-1.66.0-armv7-unknown-linux-gnueabihf.tar.xz
 	)
 	arm64? ( 
-		https://static.rust-lang.org/dist/rust-1.65.0-aarch64-unknown-linux-gnu.tar.xz -> rust-1.65.0-aarch64-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-aarch64-unknown-linux-gnu.tar.xz -> rust-1.66.0-aarch64-unknown-linux-gnu.tar.xz
 	)
 	mips? ( 
-		https://static.rust-lang.org/dist/rust-1.65.0-mips64-unknown-linux-gnuabi64.tar.xz -> rust-1.65.0-mips64-unknown-linux-gnuabi64.tar.xz
-		https://static.rust-lang.org/dist/rust-1.65.0-mipsel-unknown-linux-gnu.tar.xz -> rust-1.65.0-mipsel-unknown-linux-gnu.tar.xz
-		https://static.rust-lang.org/dist/rust-1.65.0-mips-unknown-linux-gnu.tar.xz -> rust-1.65.0-mips-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-mips64-unknown-linux-gnuabi64.tar.xz -> rust-1.66.0-mips64-unknown-linux-gnuabi64.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-mipsel-unknown-linux-gnu.tar.xz -> rust-1.66.0-mipsel-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-mips-unknown-linux-gnu.tar.xz -> rust-1.66.0-mips-unknown-linux-gnu.tar.xz
 	)
 	ppc? ( 
-		https://static.rust-lang.org/dist/rust-1.65.0-powerpc-unknown-linux-gnu.tar.xz -> rust-1.65.0-powerpc-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-powerpc-unknown-linux-gnu.tar.xz -> rust-1.66.0-powerpc-unknown-linux-gnu.tar.xz
 	)
 	ppc64? ( 
-		https://static.rust-lang.org/dist/rust-1.65.0-powerpc64le-unknown-linux-gnu.tar.xz -> rust-1.65.0-powerpc64le-unknown-linux-gnu.tar.xz
-		https://static.rust-lang.org/dist/rust-1.65.0-powerpc64-unknown-linux-gnu.tar.xz -> rust-1.65.0-powerpc64-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-powerpc64le-unknown-linux-gnu.tar.xz -> rust-1.66.0-powerpc64le-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-powerpc64-unknown-linux-gnu.tar.xz -> rust-1.66.0-powerpc64-unknown-linux-gnu.tar.xz
 	)
 	s390? ( 
-		https://static.rust-lang.org/dist/rust-1.65.0-s390x-unknown-linux-gnu.tar.xz -> rust-1.65.0-s390x-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-s390x-unknown-linux-gnu.tar.xz -> rust-1.66.0-s390x-unknown-linux-gnu.tar.xz
 	)
 	abi_x86_32? ( 
-		https://static.rust-lang.org/dist/rust-1.65.0-i686-unknown-linux-gnu.tar.xz -> rust-1.65.0-i686-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-i686-unknown-linux-gnu.tar.xz -> rust-1.66.0-i686-unknown-linux-gnu.tar.xz
 	)
 	riscv64? ( 
-		https://static.rust-lang.org/dist/rust-1.65.0-riscv64gc-unknown-linux-gnu.tar.xz -> rust-1.65.0-riscv64gc-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.66.0-riscv64gc-unknown-linux-gnu.tar.xz -> rust-1.66.0-riscv64gc-unknown-linux-gnu.tar.xz
 	)
-	rls? (
-		https://static.rust-lang.org/dist/rust-src-1.65.0.tar.xz -> rust-src-1.65.0.tar.xz
+	rust-src? (
+		https://static.rust-lang.org/dist/rust-src-1.66.0.tar.xz -> rust-src-1.66.0.tar.xz
 	)
 	wasm? (
-		https://static.rust-lang.org/dist/rust-std-1.65.0-wasm32-unknown-unknown.tar.xz -> rust-std-1.65.0-wasm32-unknown-unknown.tar.xz
+		https://static.rust-lang.org/dist/rust-std-1.66.0-wasm32-unknown-unknown.tar.xz -> rust-std-1.66.0-wasm32-unknown-unknown.tar.xz
 	)
 "
 
 LICENSE="|| ( MIT Apache-2.0 ) BSD-1 BSD-2 BSD-4 UoI-NCSA"
 SLOT="stable"
 KEYWORDS="*"
-IUSE="clippy cpu_flags_x86_sse2 doc prefix rustfmt rls wasm"
+IUSE="clippy cpu_flags_x86_sse2 doc prefix rustfmt rust-src wasm"
 
 DEPEND="app-eselect/eselect-rust"
 RDEPEND=""
@@ -69,6 +69,11 @@ QA_PREBUILT="
 	opt/${P}/lib/rustlib/.*/bin/.*
 	opt/${P}/lib/rustlib/.*/lib/.*
 "
+
+# A rmeta file is custom binary format that contains the metadata for the crate.
+# Rmeta files do not support linking, since they do not contain compiled object files.
+# So we can safely silence the warning for this QA check.
+QA_EXECSTACK="opt/${P}/lib/rustlib/*/lib*.rlib:lib.rmeta"
 
 rust_abi() {
 	local CTARGET=${1:-${CHOST}}
@@ -100,17 +105,17 @@ src_unpack() {
 	default
 
 	mv "${WORKDIR}/${MY_P}-$(rust_abi)" "${S}" || die
-		if use rls; then
-				mv "${WORKDIR}/rust-src-1.65.0/rust-src" "${S}"/rust-src
+		if use rust-src; then
+				mv "${WORKDIR}/rust-src-1.66.0/rust-src" "${S}"/rust-src
 		fi
 		if use wasm; then
-				mv "${WORKDIR}/rust-std-1.65.0-wasm32-unknown-unknown/rust-std-wasm32-unknown-unknown" "${S}"/rust-std-wasm32-unknown-unknown
+				mv "${WORKDIR}/rust-std-1.66.0-wasm32-unknown-unknown/rust-std-wasm32-unknown-unknown" "${S}"/rust-std-wasm32-unknown-unknown
 		fi
 }
 
 src_prepare() {
 	default
-		if use rls; then
+		if use rust-src; then
 				echo "rust-src" >> components
 		fi
 		if use wasm; then
@@ -139,9 +144,8 @@ multilib_src_install() {
 	local components="rustc,cargo,${std}"
 	use doc && components="${components},rust-docs"
 	use clippy && components="${components},clippy-preview"
-	use rls && components="${components},rls-preview,${analysis}"
 	use rustfmt && components="${components},rustfmt-preview"
-		use rls && components="${components},rust-src"
+		use rust-src && components="${components},rust-src"
 		use wasm && components="${components},rust-std-wasm32-unknown-unknown"
 
 	./install.sh \
@@ -172,7 +176,6 @@ multilib_src_install() {
 	)
 
 	use clippy && symlinks+=( clippy-driver cargo-clippy )
-	use rls && symlinks+=( rls )
 	use rustfmt && symlinks+=( rustfmt cargo-fmt )
 
 	einfo "installing eselect-rust symlinks and paths"
@@ -216,9 +219,6 @@ multilib_src_install() {
 	if use clippy; then
 		echo /usr/bin/clippy-driver >> "${T}/provider-${P}"
 		echo /usr/bin/cargo-clippy >> "${T}/provider-${P}"
-	fi
-	if use rls; then
-		echo /usr/bin/rls >> "${T}/provider-${P}"
 	fi
 	if use rustfmt; then
 		echo /usr/bin/rustfmt >> "${T}/provider-${P}"
