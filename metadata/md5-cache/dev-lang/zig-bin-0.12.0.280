@@ -7,5 +7,5 @@ IUSE=+doc
 LICENSE=MIT
 RDEPEND=!dev-lang/zig
 SLOT=0
-SRC_URI=amd64? ( https://ziglang.org/builds/zig-linux-x86_64-0.12.0-dev.280+64d03faae.tar.xz -> zig-linux-x86_64-0.12.0-dev.280+64d03faae.tar.xz ) arm64? ( https://ziglang.org/builds/zig-linux-aarch64-0.12.0-dev.280+64d03faae.tar.xz -> zig-linux-aarch64-0.12.0-dev.280+64d03faae.tar.xz ) arm? ( https://ziglang.org/builds/zig-linux-armv7a-0.12.0-dev.280+64d03faae.tar.xz -> zig-linux-armv7a-0.12.0-dev.280+64d03faae.tar.xz ) riscv64? ( https://ziglang.org/builds/zig-linux-riscv64-0.12.0-dev.280+64d03faae.tar.xz -> zig-linux-riscv64-0.12.0-dev.280+64d03faae.tar.xz )
-_md5_=2933cd7b40b0a90a6df1ddab384f8c9b
+SRC_URI=arm64? ( https://ziglang.org/builds/zig-linux-aarch64-0.12.0-dev.280+64d03faae.tar.xz -> zig-linux-aarch64-0.12.0-dev.280+64d03faae.tar.xz ) arm? ( https://ziglang.org/builds/zig-linux-armv7a-0.12.0-dev.280+64d03faae.tar.xz -> zig-linux-armv7a-0.12.0-dev.280+64d03faae.tar.xz ) riscv64? ( https://ziglang.org/builds/zig-linux-riscv64-0.12.0-dev.280+64d03faae.tar.xz -> zig-linux-riscv64-0.12.0-dev.280+64d03faae.tar.xz ) amd64? ( https://ziglang.org/builds/zig-linux-x86_64-0.12.0-dev.280+64d03faae.tar.xz -> zig-linux-x86_64-0.12.0-dev.280+64d03faae.tar.xz )
+_md5_=6c9a0250e9d1a345e6431c115a71fb13
