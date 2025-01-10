@@ -10,34 +10,37 @@ DESCRIPTION="Systems programming language from Mozilla"
 HOMEPAGE="https://www.rust-lang.org/"
 SRC_URI="
 		abi_x86_64? ( 
-		https://static.rust-lang.org/dist/rust-1.83.0-x86_64-unknown-linux-gnu.tar.xz -> rust-1.83.0-x86_64-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.84.0-x86_64-unknown-linux-gnu.tar.xz -> rust-1.84.0-x86_64-unknown-linux-gnu.tar.xz
 	)
 	arm? ( 
-		https://static.rust-lang.org/dist/rust-1.83.0-arm-unknown-linux-gnueabi.tar.xz -> rust-1.83.0-arm-unknown-linux-gnueabi.tar.xz
-		https://static.rust-lang.org/dist/rust-1.83.0-arm-unknown-linux-gnueabihf.tar.xz -> rust-1.83.0-arm-unknown-linux-gnueabihf.tar.xz
-		https://static.rust-lang.org/dist/rust-1.83.0-armv7-unknown-linux-gnueabihf.tar.xz -> rust-1.83.0-armv7-unknown-linux-gnueabihf.tar.xz
+		https://static.rust-lang.org/dist/rust-1.84.0-arm-unknown-linux-gnueabi.tar.xz -> rust-1.84.0-arm-unknown-linux-gnueabi.tar.xz
+		https://static.rust-lang.org/dist/rust-1.84.0-arm-unknown-linux-gnueabihf.tar.xz -> rust-1.84.0-arm-unknown-linux-gnueabihf.tar.xz
+		https://static.rust-lang.org/dist/rust-1.84.0-armv7-unknown-linux-gnueabihf.tar.xz -> rust-1.84.0-armv7-unknown-linux-gnueabihf.tar.xz
 	)
 	arm64? ( 
-		https://static.rust-lang.org/dist/rust-1.83.0-aarch64-unknown-linux-gnu.tar.xz -> rust-1.83.0-aarch64-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.84.0-aarch64-unknown-linux-gnu.tar.xz -> rust-1.84.0-aarch64-unknown-linux-gnu.tar.xz
 	)
 	riscv64? ( 
-		https://static.rust-lang.org/dist/rust-1.83.0-riscv64gc-unknown-linux-gnu.tar.xz -> rust-1.83.0-riscv64gc-unknown-linux-gnu.tar.xz
+		https://static.rust-lang.org/dist/rust-1.84.0-riscv64gc-unknown-linux-gnu.tar.xz -> rust-1.84.0-riscv64gc-unknown-linux-gnu.tar.xz
 	)
 	rust-src? (
-		https://static.rust-lang.org/dist/rust-src-1.83.0.tar.xz -> rust-src-1.83.0.tar.xz
+		https://static.rust-lang.org/dist/rust-src-1.84.0.tar.xz -> rust-src-1.84.0.tar.xz
 	)
 	wasm? (
-		https://static.rust-lang.org/dist/rust-std-1.83.0-wasm32-unknown-unknown.tar.xz -> rust-std-1.83.0-wasm32-unknown-unknown.tar.xz
+		https://static.rust-lang.org/dist/rust-std-1.84.0-wasm32-unknown-unknown.tar.xz -> rust-std-1.84.0-wasm32-unknown-unknown.tar.xz
 	)
-	wasm-wasi? (
-		https://static.rust-lang.org/dist/rust-std-1.83.0-wasm32-wasi.tar.xz -> rust-std-1.83.0-wasm32-wasi.tar.xz
+	wasm-wasip1? (
+		https://static.rust-lang.org/dist/rust-std-1.84.0-wasm32-wasip1.tar.xz -> rust-std-1.84.0-wasm32-wasip1.tar.xz
+	)
+	wasm-wasip2? (
+		https://static.rust-lang.org/dist/rust-std-1.84.0-wasm32-wasip2.tar.xz -> rust-std-1.84.0-wasm32-wasip2.tar.xz
 	)
 "
 
 LICENSE="|| ( MIT Apache-2.0 ) BSD-1 BSD-2 BSD-4 UoI-NCSA"
 SLOT="stable"
 KEYWORDS="*"
-IUSE="clippy cpu_flags_x86_sse2 doc prefix rustfmt rust-src wasm wasm-wasi"
+IUSE="clippy cpu_flags_x86_sse2 doc prefix rustfmt rust-src wasm wasm-wasip1 wasm-wasip2"
 RESTRICT="strip"
 DEPEND="app-eselect/eselect-rust"
 RDEPEND="${DEPEND}"
@@ -83,13 +86,16 @@ src_unpack() {
 
 	mv "${WORKDIR}/${MY_P}-$(rust_abi)" "${S}" || die
 		if use rust-src; then
-				mv "${WORKDIR}/rust-src-1.83.0/rust-src" "${S}"/rust-src
+				mv "${WORKDIR}/rust-src-1.84.0/rust-src" "${S}"/rust-src
 		fi
 		if use wasm; then
-				mv "${WORKDIR}/rust-std-1.83.0-wasm32-unknown-unknown/rust-std-wasm32-unknown-unknown" "${S}"/rust-std-wasm32-unknown-unknown
+				mv "${WORKDIR}/rust-std-1.84.0-wasm32-unknown-unknown/rust-std-wasm32-unknown-unknown" "${S}"/rust-std-wasm32-unknown-unknown
 		fi
-		if use wasm-wasi; then
-				mv "${WORKDIR}/rust-std-1.83.0-wasm32-wasi/rust-std-wasm32-wasi" "${S}"/rust-std-wasm32-wasi
+		if use wasm-wasip1; then
+				mv "${WORKDIR}/rust-std-1.84.0-wasm32-wasip1/rust-std-wasm32-wasip1" "${S}"/rust-std-wasm32-wasip1
+		fi
+		if use wasm-wasip2; then
+				mv "${WORKDIR}/rust-std-1.84.0-wasm32-wasip2/rust-std-wasm32-wasip2" "${S}"/rust-std-wasm32-wasip2
 		fi
 }
 
@@ -101,8 +107,11 @@ src_prepare() {
 		if use wasm; then
 				echo "rust-std-wasm32-unknown-unknown" >> components
 		fi
-		if use wasm-wasi; then
-				echo "rust-std-wasm32-wasi" >> components
+		if use wasm-wasip1; then
+				echo "rust-std-wasm32-wasip1" >> components
+		fi
+		if use wasm-wasip2; then
+				echo "rust-std-wasm32-wasip2" >> components
 		fi
 }
 
@@ -130,7 +139,8 @@ multilib_src_install() {
 	use rustfmt && components="${components},rustfmt-preview"
 		use rust-src && components="${components},rust-src"
 		use wasm && components="${components},rust-std-wasm32-unknown-unknown"
-		use wasm-wasi && components="${components},rust-std-wasm32-wasi"
+		use wasm-wasip1 && components="${components},rust-std-wasm32-wasip1"
+		use wasm-wasip2 && components="${components},rust-std-wasm32-wasip2"
 
 	./install.sh \
 		--components="${components}" \
