@@ -1,79 +1,61 @@
-#!/usr/bin/env python3
+#!/sr/bin/env python3
 
-import re
-from collections import OrderedDict
-from metatools.version import generic
-
-ebuilds_to_generate = [ 'dev-lang/zig', 'dev-lang/zig-bin', 'virtual/zig', ]
-
-architecture_names = dict(
-    x86_64='amd64',
-    i386='x86',
-    riscv64='riscv64',
-    aarch64='arm64',
-    armv7a='arm',
-)
-
-async def generate_bin_artifacts(hub, spec, **pkginfo):
-    artifacts = OrderedDict()
-    for k, v in spec.items():
-        (arch, os, *_) = k.split('-') + [None]
-
-        arch = architecture_names.get(arch)
-        if arch is None:
-            continue
-
-        if os == 'linux':
-            artifacts[arch] = hub.pkgtools.ebuild.Artifact(url=v['tarball'])
-    return artifacts
-
-async def generate_src_artifacts(hub, spec, **pkginfo):
-    return [hub.pkgtools.ebuild.Artifact(url=spec['src']['tarball'])]
-
-async def generate_ebuild(hub, spec, artifacts='', **pkginfo):
-    # Development versions must be normalized
-    #  0.10.0-dev.661+c10fdde5a -> 0.10.0.661
-    dev = False
-    version = spec['version']
-    m = re.fullmatch(r'([0-9.]+)-dev\.(\d+)\+\w+', version)
-    if m:
-        dev = True
-        version = "%s.%s" % m.groups()
-
-    hub.pkgtools.ebuild.BreezyBuild(
-        **pkginfo,
-        version=version,
-        artifacts=artifacts,
-        dev=dev,
-    ).push()
+import requests
 
 async def generate(hub, **pkginfo):
-    versions = await hub.pkgtools.fetch.get_page('https://ziglang.org/download/index.json', is_json=True)
+	# json_data = await hub.pkgtools.fetch.get_page(f"https://ziglang.org/download/index.json", is_json=True)
+	result = requests.get("https://ziglang.org/download/index.json")
+	json_data = result.json()
+	versions = list(json_data.keys())
+	versions.remove('master')
 
-    releases = [generic.parse(k) for k in versions.keys() if k != 'master']
-    last_release = (max(releases)).public # .public provides the version as a string instead of Version()
-    versions[last_release]['version'] = last_release
+	for version in versions:
+		try:
+			verlist = version.split('.')
+			list(map(int, verlist))
+			break
 
-    for v in ['master', last_release]:
-        vers = versions[v]
+		except (KeyError, IndexError, ValueError):
+			continue
 
-        for catpkg in ebuilds_to_generate:
-            cat, pkg = catpkg.split('/')
+	data = json_data.get(version)
+	ebuilds_to_generate = [('dev-lang/zig', 'src'), ('dev-lang/zig-bin', 'x86_64-linux'), ('virtual/zig', 'src'),]
 
-            if cat == 'virtual': template = cat
-            else: template = pkg
+	for catpkg, key in ebuilds_to_generate:
+		cat, pkg = catpkg.split('/')
 
-            template = template + '.tmpl'
+		if cat == 'virtual': template = cat
+		else: template = pkg
 
-            if pkg.endswith('-bin'):
-                artifacts = await generate_bin_artifacts(hub, vers, **pkginfo)
-            else:
-                artifacts = await generate_src_artifacts(hub, vers, **pkginfo)
+		template = template + '.tmpl'
 
+		pkginfo['name'] = pkg
+		pkginfo['cat']  = cat
+		if template:
+			pkginfo['template'] = template
 
-            pkginfo['name'] = pkg
-            pkginfo['cat']  = cat
-            if template:
-                pkginfo['template'] = template
+		if pkg.endswith("-bin"):
+			architecture_names = dict(
+				x86_64='amd64',
+				x86='x86',
+				riscv64='riscv64',
+				aarch64='arm64',
+				armv7a='arm',
+			)
+			artifact = {}
+			for k, v in architecture_names.items():
+				url = data[f"{k}-linux"]['tarball']
+				artifact[v] = hub.pkgtools.ebuild.Artifact(url=url, final_name=url.split("/")[-1])
+		else:
+			url = data[key]['tarball']
+			artifact = [hub.pkgtools.ebuild.Artifact(url=url, final_name=url.split("/")[-1])]
 
-            await generate_ebuild(hub, vers, artifacts=artifacts, **pkginfo)
+		ebuild = hub.pkgtools.ebuild.BreezyBuild(
+			**pkginfo,
+			version=version,
+			dev=False,
+			artifacts=artifact
+		)
+		ebuild.push()
+
+# vim: ts=4 sw=4 noet

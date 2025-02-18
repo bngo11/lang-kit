@@ -1,26 +1,41 @@
 #!/usr/bin/env python3
 
-from metatools.version import generic
-
-
-def get_release(releases_data):
-	releases = list(filter(lambda x: x["prerelease"] is False and x["draft"] is False, releases_data))
-	return None if not releases else sorted(releases, key=lambda x: generic.parse(x["tag_name"])).pop()
-
+import json
 
 async def generate(hub, **pkginfo):
-	user = "svaarala"
-	repo = pkginfo["name"]
-	release_data = await hub.pkgtools.fetch.get_page(f"https://api.github.com/repos/{user}/{repo}/releases", is_json=True)
-	latest_release = get_release(release_data)
-	if latest_release is None:
-		raise hub.pkgtools.ebuild.BreezyError(f"Can't find a suitable release of {repo}")
-	version = latest_release["tag_name"].lstrip("v")
-	url = next(x["browser_download_url"] for x in latest_release["assets"] if x["name"].endswith(".tar.xz"))
+	github_user = "svaarala"
+	github_repo = pkginfo.get("name")
+	json_data = await hub.pkgtools.fetch.get_page(f"https://api.github.com/repos/{github_user}/{github_repo}/releases", is_json=True)
+	version = None
+	url = None
 
-	ebuild = hub.pkgtools.ebuild.BreezyBuild(
-		**pkginfo,
-		version=version,
-		artifacts=[hub.pkgtools.ebuild.Artifact(url=url)],
-	)
-	ebuild.push()
+	for item in json_data:
+		try:
+			if item["prerelease"] or item["draft"]:
+				continue
+
+			version = item["tag_name"].lstrip("v")
+			list(map(int, version.split(".")))
+
+			for asset in item['assets']:
+				asset_name = asset["name"]
+
+				if asset_name.endswith("tar.xz"):
+					url = asset["browser_download_url"]
+					break
+
+			if url:
+				break
+
+		except (KeyError, IndexError, ValueError):
+			continue
+
+	if version and url:
+		ebuild = hub.pkgtools.ebuild.BreezyBuild(
+			**pkginfo,
+			version=version,
+			artifacts=[hub.pkgtools.ebuild.Artifact(url=url, final_name=asset_name)]
+		)
+		ebuild.push()
+
+# vim: ts=4 sw=4 noet
