@@ -40,7 +40,7 @@ async def generate(hub, **pkginfo):
 				x86='x86',
 				riscv64='riscv64',
 				aarch64='arm64',
-				armv7a='arm',
+				# armv7a='arm',
 			)
 			artifact = {}
 			for k, v in architecture_names.items():
