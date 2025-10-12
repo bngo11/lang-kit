@@ -4,10 +4,10 @@ EAPI=6
 
 DESCRIPTION="General-purpose programming language for robust, optimal, and reusable software"
 SRC_URI="
-	amd64? ( https://ziglang.org/download/0.15.1/zig-x86_64-linux-0.15.1.tar.xz -> zig-x86_64-linux-0.15.1.tar.xz )
-	arm64? ( https://ziglang.org/download/0.15.1/zig-aarch64-linux-0.15.1.tar.xz -> zig-aarch64-linux-0.15.1.tar.xz )
-	riscv64? ( https://ziglang.org/download/0.15.1/zig-riscv64-linux-0.15.1.tar.xz -> zig-riscv64-linux-0.15.1.tar.xz )
-	x86? ( https://ziglang.org/download/0.15.1/zig-x86-linux-0.15.1.tar.xz -> zig-x86-linux-0.15.1.tar.xz )"
+	amd64? ( https://ziglang.org/download/0.15.2/zig-x86_64-linux-0.15.2.tar.xz -> zig-x86_64-linux-0.15.2.tar.xz )
+	arm64? ( https://ziglang.org/download/0.15.2/zig-aarch64-linux-0.15.2.tar.xz -> zig-aarch64-linux-0.15.2.tar.xz )
+	riscv64? ( https://ziglang.org/download/0.15.2/zig-riscv64-linux-0.15.2.tar.xz -> zig-riscv64-linux-0.15.2.tar.xz )
+	x86? ( https://ziglang.org/download/0.15.2/zig-x86-linux-0.15.2.tar.xz -> zig-x86-linux-0.15.2.tar.xz )"
 HOMEPAGE="https://ziglang.org/"
 KEYWORDS="*"
 SLOT="0"
