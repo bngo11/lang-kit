@@ -10,7 +10,7 @@ MY_PV=${PV/_/}
 
 inherit toolchain-funcs
 
-SRC_URI="https://storage.googleapis.com/golang/go${MY_PV}.src.tar.gz "
+SRC_URI="https://go.dev/dl/go${MY_PV}.src.tar.gz "
 S="${WORKDIR}"/go
 KEYWORDS="*"
 
