@@ -8,5 +8,5 @@ KEYWORDS=-* amd64 arm64
 LICENSE=Apache License v2.0 LLVM
 RDEPEND=>=dev-lang/go-1.22.0
 SLOT=0
-SRC_URI=amd64? ( https://github.com/tinygo-org/tinygo/releases/download/v0.39.0/tinygo0.39.0.linux-amd64.tar.gz -> tinygo0.39.0.linux-amd64.tar.gz ) arm64? ( https://github.com/tinygo-org/tinygo/releases/download/v0.39.0/tinygo0.39.0.linux-arm64.tar.gz -> tinygo0.39.0.linux-arm64.tar.gz )
-_md5_=733d5e57cc3617a38d3ae9f1cb628207
+SRC_URI=amd64? ( https://github.com/tinygo-org/tinygo/releases/download/v0.40.0/tinygo0.40.0.linux-amd64.tar.gz -> tinygo0.40.0.linux-amd64.tar.gz ) arm64? ( https://github.com/tinygo-org/tinygo/releases/download/v0.40.0/tinygo0.40.0.linux-arm64.tar.gz -> tinygo0.40.0.linux-arm64.tar.gz )
+_md5_=aca34f58ac8ace261dfb5a30728594a0
