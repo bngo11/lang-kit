@@ -10,7 +10,7 @@ LLVM_MAX_SLOT=15
 
 DESCRIPTION="Intel SPMD Program Compiler"
 HOMEPAGE="https://ispc.github.io/"
-SRC_URI="https://api.github.com/repos/ispc/ispc/tarball/v1.29.1 -> ispc-1.29.1.tar.gz"
+SRC_URI="https://api.github.com/repos/ispc/ispc/tarball/v1.30.0 -> ispc-1.30.0.tar.gz"
 
 KEYWORDS="*"
 LICENSE="BSD BSD-2 UoI-NCSA"
