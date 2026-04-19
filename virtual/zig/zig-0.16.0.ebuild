@@ -10,4 +10,4 @@ KEYWORDS="*"
 
 
 BDEPEND=""
-RDEPEND="|| ( ~dev-lang/zig-bin-0.15.2 ~dev-lang/zig-0.15.2 )"
+RDEPEND="|| ( ~dev-lang/zig-bin-0.16.0 ~dev-lang/zig-0.16.0 )"
