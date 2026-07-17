@@ -6,7 +6,7 @@ inherit autotools
 
 DESCRIPTION="A free implementation of APL/2 (ISO 13751) w/extensions"
 HOMEPAGE="https://www.gnu.org/software/apl/"
-SRC_URI="https://ftp.gnu.org/gnu/apl/apl-1.9.tar.gz -> apl-1.9.tar.gz
+SRC_URI="https://ftp.gnu.org/gnu/apl/apl-2.0.tar.gz -> apl-2.0.tar.gz
 "
 
 LICENSE="GPL-2"

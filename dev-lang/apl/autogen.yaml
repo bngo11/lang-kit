@@ -10,4 +10,4 @@ gnu-apl_rule:
         description: A free implementation of APL/2 (ISO 13751) w/extensions
         base_url: https://ftp.gnu.org/gnu/apl
         homepage: https://www.gnu.org/software/apl/
-        version: '1.9'
+        version: '2.0'

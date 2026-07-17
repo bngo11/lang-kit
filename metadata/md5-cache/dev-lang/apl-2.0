@@ -8,6 +8,6 @@ KEYWORDS=*
 LICENSE=GPL-2
 RDEPEND=sys-libs/ncurses:=
 SLOT=0
-SRC_URI=https://ftp.gnu.org/gnu/apl/apl-1.9.tar.gz -> apl-1.9.tar.gz
+SRC_URI=https://ftp.gnu.org/gnu/apl/apl-2.0.tar.gz -> apl-2.0.tar.gz
 _eclasses_=autotools	619846d0d85ed5d3334692c0215a603e	libtool	f143db5a74ccd9ca28c1234deffede96	multilib	d410501a125f99ffb560b0c523cd3d1e	toolchain-funcs	24921b57d6561d87cbef4916a296ada4
-_md5_=338b9159075cea8d2197a9f798bf95dc
+_md5_=7c1749c507650de07761552edb76d3c3
