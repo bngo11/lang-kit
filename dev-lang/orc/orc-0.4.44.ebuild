@@ -7,7 +7,7 @@ inherit meson
 
 DESCRIPTION="The Oil Runtime Compiler, a just-in-time compiler for array operations"
 HOMEPAGE="https://gstreamer.freedesktop.org/"
-SRC_URI="https://gstreamer.freedesktop.org/src/orc/orc-0.4.43.tar.xz -> orc-0.4.43.tar.xz"
+SRC_URI="https://gstreamer.freedesktop.org/src/orc/orc-0.4.44.tar.xz -> orc-0.4.44.tar.xz"
 
 LICENSE="BSD BSD-2"
 SLOT="0"
